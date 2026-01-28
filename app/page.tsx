@@ -42,7 +42,7 @@ function PostCard({
       <CardContent>
         {/* Post Header */}
         <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
-          <Avatar sx={{ width: 40, height: 40 }} /> {/* Post author avatar */}
+          <Avatar sx={{ width: 40, height: 40 }} />
           <Box>
             <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
               Jigisha Ponda
@@ -221,13 +221,12 @@ function SuggestionCard({ name, onRemove }: { name: string; onRemove: () => void
 
   const handleClick = () => {
     if (status === 'connect') {
-      setStatus('pending'); // first click → Pending
+      setStatus('pending');
     } else if (status === 'pending') {
-      setStatus('connected'); // second click → Connected
-      // Optional: remove after a short delay
+      setStatus('connected');
       // setTimeout(onRemove, 2000);
     } else {
-      setStatus('connect'); // reset back to connect if clicked again
+      setStatus('connect');
     }
   };
 
