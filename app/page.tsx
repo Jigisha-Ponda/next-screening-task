@@ -608,7 +608,7 @@ function SuggestionCard({ name, onRemove }: { name: string; onRemove: () => void
 }
 
 function SuggestionsColumn() {
-  const [suggestions, setSuggestions] = useState(['Alice', 'Bob', 'Charlie']);
+  const [suggestions, setSuggestions] = useState(['Jack', 'John', 'Jill']);
 
   const removeSuggestion = (name: string) => {
     setSuggestions(prev => prev.filter(s => s !== name));
