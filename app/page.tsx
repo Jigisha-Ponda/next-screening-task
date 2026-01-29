@@ -34,6 +34,11 @@ import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
 type Comment = {
   id: number;
   text: string;
@@ -57,6 +62,7 @@ type Post = {
   likes: number;
   comments: Comment[];
 };
+
 function Header() {
   const [active, setActive] = useState('home');
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -443,63 +449,64 @@ function ProfileCard() {
   );
 }
 
-
-function SuggestionCard({ name, onRemove }: { name: string; onRemove: () => void }) {
-  const [status, setStatus] = useState<'connect' | 'pending' | 'connected'>('connect');
-
-  const handleClick = () => {
-    if (status === 'connect') {
-      setStatus('pending');
-    } else if (status === 'pending') {
-      setStatus('connected');
-      // setTimeout(onRemove, 2000);
-    } else {
-      setStatus('connect');
+function SavedItems() {
+  const items = [
+    {
+      label: 'Saved items',
+      icon: <BookmarkBorderIcon fontSize="small" />,
+    },
+    {
+      label: 'Groups',
+      icon: <GroupOutlinedIcon fontSize="small" />,
+    },
+    {
+      label: 'Events',
+      icon: <EventOutlinedIcon fontSize="small" />,
+    },
+    {
+      label: 'Newsletter',
+      icon: <MailOutlineIcon fontSize="small" />,
     }
+  ];
+
+  const handleClick = (label: any) => {
+    console.log(`${label} clicked`);
+    // later: router.push(`/saved`) etc.
   };
 
   return (
-    <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ py: 0.5 }}>
-      <Stack direction="row" spacing={1} alignItems="center">
-        <Avatar sx={{ width: 32, height: 32 }}>{name[0]}</Avatar>
-        <Typography variant="body2">{name}</Typography>
-      </Stack>
-      <Button
-        size="small"
-        variant={status === 'connect' ? 'outlined' : 'contained'}
-        color={status === 'connect' ? 'primary' : status === 'pending' ? 'warning' : 'success'}
-        onClick={handleClick}
-      >
-        {status === 'connect' ? 'Connect' : status === 'pending' ? 'Pending' : 'Connected'}
-      </Button>
-    </Stack>
+    <Card sx={{ borderRadius: 2 }}>
+      <CardContent sx={{ p: 0 }}>
+        <Stack>
+          {items.map((item) => (
+            <Box
+              key={item?.label}
+              onClick={() => handleClick(item?.label)}
+              sx={{
+                px: 2,
+                py: 1.2,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1.5,
+                cursor: 'pointer',
+                '&:hover': {
+                  bgcolor: 'action.hover',
+                },
+              }}
+            >
+              {item?.icon}
+
+              <Typography variant="body2" fontWeight={500}>
+                {item?.label}
+              </Typography>
+            </Box>
+          ))}
+        </Stack>
+      </CardContent>
+    </Card>
   );
 }
 
-// function SuggestionsColumn() {
-//   const [suggestions, setSuggestions] = useState(['Alen', 'John', 'Jill']);
-
-//   const removeSuggestion = (name: string) => {
-//     setSuggestions(prev => prev.filter(s => s !== name));
-//   };
-
-//   return (
-//     <Card sx={{ mb: 2, p: 1 }}>
-//       <CardContent>
-//         <Typography variant="h6" sx={{ mb: 1 }}>People You May Know</Typography>
-//         <Stack spacing={1}>
-//           {suggestions.map(name => (
-//             <SuggestionCard
-//               key={name}
-//               name={name}
-//               onRemove={() => removeSuggestion(name)}
-//             />
-//           ))}
-//         </Stack>
-//       </CardContent>
-//     </Card>
-//   );
-// }
 
 function SuggestionsColumn() {
   const [suggestions, setSuggestions] = useState([
@@ -662,7 +669,7 @@ export default function HomePage() {
       likes: 12,
       comments: [
         { id: 1, text: 'Looks great!', liked: false, authorName: 'John Doe', timeAgo: '1h' },
-        { id: 2, text: 'Nice UI 👏', liked: false, authorName: 'Jane Smith', timeAgo: '30m' }
+        { id: 2, text: 'Nice UI 👏', liked: false, authorName: 'Jack', timeAgo: '30m' }
       ]
     },
     {
@@ -679,7 +686,7 @@ export default function HomePage() {
       likes: 34,
       comments: [
         { id: 1, text: 'Looks great!', liked: false, authorName: 'John Doe', timeAgo: '1h' },
-        { id: 2, text: 'Nice UI 👏', liked: false, authorName: 'Jane Smith', timeAgo: '30m' }
+        { id: 2, text: 'Nice UI 👏', liked: false, authorName: 'Alen', timeAgo: '30m' }
       ]
     },
     {
@@ -696,7 +703,7 @@ export default function HomePage() {
       likes: 34,
       comments: [
         { id: 1, text: 'Looks great!', liked: false, authorName: 'John Doe', timeAgo: '1h' },
-        { id: 2, text: 'Nice UI 👏', liked: false, authorName: 'Jane Smith', timeAgo: '30m' }
+        { id: 2, text: 'Nice UI 👏', liked: false, authorName: 'Jill', timeAgo: '30m' }
       ]
     }
   ]);
@@ -751,7 +758,10 @@ export default function HomePage() {
       <Container maxWidth="lg" sx={{ mt: 2 }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={4} md={3}>
-            <ProfileCard />
+            <Stack spacing={2}>
+              <ProfileCard />
+              <SavedItems />
+            </Stack>
           </Grid>
 
           <Grid item xs={12} sm={8} md={9}>
