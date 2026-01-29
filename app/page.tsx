@@ -390,11 +390,11 @@ function ProfileCard() {
   return (
     <Card sx={{ mb: 2, borderRadius: 2 }}>
       <Box sx={{ bgcolor: '#1976d2', height: 80 }} />
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: -4 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'left', mt: -4, px: 2 }}>
         <Avatar sx={{ width: 80, height: 80 }} />
       </Box>
 
-      <CardContent sx={{ textAlign: 'center', pt: 1 }}>
+      <CardContent sx={{ textAlign: 'left', pt: 1 }}>
         {editing ? (
           <>
             <TextField
@@ -429,7 +429,7 @@ function ProfileCard() {
 
       <Divider />
 
-      <CardContent sx={{ textAlign: 'center', pt: 1, pb: 1 }}>
+      <CardContent sx={{ textAlign: 'left', pt: 1, pb: 1 }}>
         <Typography variant="body2" color="text.secondary">
           150 Connections
         </Typography>
@@ -440,11 +440,11 @@ function ProfileCard() {
 
       <Divider />
 
-      <CardActions sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', px: 2 }}>
+      {/* <CardActions sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', px: 2 }}>
         <Button size="small" fullWidth>My Profile</Button>
         <Button size="small" fullWidth>My Network</Button>
         <Button size="small" fullWidth>Posts & Activity</Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 }
