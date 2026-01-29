@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import ThemeRegistry from './theme-registry';
 
 export const metadata = {
-  title: 'LinkedIn Feed',
+  title: 'Feed | Linkedln',
 };
 
 export default function RootLayout({
