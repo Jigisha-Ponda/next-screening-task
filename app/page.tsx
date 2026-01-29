@@ -96,7 +96,7 @@ function Header() {
   );
 
   return (
-    <AppBar position="sticky" color="default" elevation={1} sx={{
+    <AppBar position="fixed" color="default" elevation={1} sx={{
       bgcolor: '#fff',
       color: 'text.primary',
       borderBottom: '1px solid #e0e0e0'
@@ -755,7 +755,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <Container maxWidth="lg" sx={{ mt: 2 }}>
+      <Container maxWidth="lg" sx={{ mt: 2, pt: '64px'}}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={4} md={3}>
             <Stack spacing={2}>
